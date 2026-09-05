@@ -5,52 +5,90 @@
 #include "confman.hpp"
 
 #define INF_TIME 1'000'000'000
+#define TBD 0
+
 #define SECONDS * 1000
+
 /* FIXED means a reflash of the boards is needed upon modification */
 #define FIXED static constexpr
+/* DYNA means it is possible to change it through UART*/
+#define DYNAMIC
 
 struct PressurizationParams {
-    uint32_t HoldDelayMs      = INF_TIME; // N/A
-    float LoxSetPressure      = 48.f;
-    float FuelSetPressure     = 46.f;
-    uint32_t RampUpDurationMs = 10 SECONDS; // N/A
-    float MaxCriticalPressure = 65.f;
-    float MaxNominalPressure  = 50.f;
-    float MinNominalPressure  = 45.f;
+    FIXED   uint32_t LaunchDelayMs = 12.f;
+    DYNAMIC uint32_t HoldDelayMs   = 9.1f;
+
+    DYNAMIC float TargetPressureLox  = 48.f;
+    DYNAMIC float TargetPressureFuel = 46.f;
+
+    /* Ramp Rate (Bar per ms) */
+    FIXED float RampRate = 50e-3;
+    FIXED float RampExitThresholdRatio = 0.98;
+    
+    FIXED   float MaxCriticalPressure    = 70.f;
+    DYNAMIC float MaxLoxNominalPressure  = 50.f;
+    DYNAMIC float MinLoxNominalPressure  = 45.f;
+    DYNAMIC float MaxFuelNominalPressure = 50.f;
+    DYNAMIC float MinFuelNominalPressure = 45.f;
 };
 static_assert(sizeof(PressurizationParams) == 28);
 
 struct IgnitionParams {
-    uint32_t PrechillDurationMs     = 200;
-    uint32_t IgniterDurationMs      = 2700;
-    uint32_t DelayMs                = 130;
-    uint32_t RampUpMs               = 125;
+    DYNAMIC uint32_t PrechillDurationMs = 200;
+    DYNAMIC uint32_t IgniterDurationMs  = 2700;
+    DYNAMIC uint32_t DelayMs            = 130;
+    DYNAMIC uint32_t RampUpMs           = 125;
 
+    /* Threshold for liftoff (in m.s^-2) */
     FIXED float    LiftoffAccelThreshold  = 2; // m/s2
     FIXED uint32_t LiftoffAccelDurationMs = 500;
 };
 static_assert(sizeof(IgnitionParams) == 16);
 
 struct BurnParams {
-    uint32_t CutoffDelayMs = 40;
-    uint32_t MinDurationMs = 2000;
-    float    Impulse       = 0; // TBD
-
-    uint32_t FcMaxDurationMs     = 7 SECONDS;
-    uint32_t EngineMaxDurationMs = 4 SECONDS;
+    FIXED   float    PressureIntegralToImpulse = TBD;
+    DYNAMIC uint32_t MinDurationMs             = 2 SECONDS;
+    DYNAMIC float    Impulse                   = TBD;
+    DYNAMIC uint32_t FcMaxDurationMs           = 7 SECONDS;
+    DYNAMIC uint32_t EngineMaxDurationMs       = 4 SECONDS;
+    DYNAMIC uint32_t CutoffDelayMs             = 40;
 };
 static_assert(sizeof(BurnParams) == 20);
 
+struct AscentParams {
+    FIXED uint32_t AscentMaxDurationMs    = 35 SECONDS;
+    FIXED float    DescentSpeedThreshold  = - 3;
+    FIXED uint32_t DescentSpeedDurationMs = 300;
+};
+static_assert(sizeof(AscentParams) == 1);
+
+struct DescentPassivationParams {
+    FIXED uint32_t DelayMs      = 5 SECONDS;
+    FIXED uint32_t DelayNoComMs = 120 SECONDS;
+    
+    FIXED uint32_t DurationMs          = 10 SECONDS;
+    FIXED uint32_t InterludeDurationMs = 10 SECONDS;
+};
+struct DescentEngineDepressurizeParams {
+    FIXED uint32_t DelayMs    = 10 SECONDS;
+    FIXED uint32_t DurationMs = 20 SECONDS;
+};
+struct DescentDPRDepressurizeParams {
+    FIXED uint32_t DelayMs          = 45 SECONDS;
+    FIXED float    BallValveOpening = 50.f;
+    FIXED uint32_t DurationMs       = 20 SECONDS;
+    FIXED uint32_t DelayNoComMs     = 120 SECONDS;
+};
+struct DescentDepressurizeParams {
+    FIXED DescentEngineDepressurizeParams Engine {};
+    FIXED DescentDPRDepressurizeParams    DPR    {};
+};
+
 struct DescentParams {
-    FIXED uint32_t PassivationDelayMs       = 5 SECONDS;
-    FIXED uint32_t DprDepressurizeDelayMs   = 45 SECONDS;
-    FIXED uint32_t PassivationDurationMs    = 10 SECONDS;
-    FIXED uint32_t InterludeDurationMs      = 10 SECONDS;
-    FIXED uint32_t PrcDepressurizeDelayMs   = 10 SECONDS;
-    FIXED uint32_t DprPassivationDurationMs = 300 SECONDS;
-    FIXED uint32_t PassivationDelayNoComMs  = 120 SECONDS;
-    FIXED uint32_t DepressurizeDelayNoComMs = 120 SECONDS;
-    FIXED uint32_t DescentMaxDuration       = 60 SECONDS;
+    FIXED DescentPassivationParams     Passivation  {};
+    FIXED DescentDPRDepressurizeParams Depressurize {};
+
+    FIXED uint32_t MaxDurationMs = 60 SECONDS;
 };
 static_assert(sizeof(DescentParams) == 1);
 
@@ -65,6 +103,7 @@ struct FlightParams {
     IgnitionParams       Ignition;
     BurnParams           Burn;
 
+    FIXED AscentParams  Ascent {};
     FIXED DescentParams Descent {};
     FIXED AbortParams   AIF {};
 };
