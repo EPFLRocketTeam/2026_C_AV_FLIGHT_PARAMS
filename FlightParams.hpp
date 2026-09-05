@@ -18,18 +18,18 @@ struct PressurizationParams {
     FIXED   uint32_t LaunchDelayMs = 12.f;
     DYNAMIC uint32_t HoldDelayMs   = 9.1f;
 
-    DYNAMIC float TargetPressureLox  = 35.f;
-    DYNAMIC float TargetPressureFuel = 25.f;
+    DYNAMIC float TargetPressureLox  = 1.f;
+    DYNAMIC float TargetPressureFuel = 1.f;
 
     /* Ramp Rate (Bar per ms) */
     FIXED float RampRate = 50e-3;
     FIXED float RampExitThresholdRatio = 0.98;
     
     FIXED   float MaxCriticalPressure    = 70.f;
-    DYNAMIC float MaxLoxNominalPressure  = 9.f;
-    DYNAMIC float MinLoxNominalPressure  = 7.f;
-    DYNAMIC float MaxFuelNominalPressure = 9.f;
-    DYNAMIC float MinFuelNominalPressure = 7.f;
+    DYNAMIC float MaxLoxNominalPressure  = 1.5f;
+    DYNAMIC float MinLoxNominalPressure  = 0.5f;
+    DYNAMIC float MaxFuelNominalPressure = 1.5f;
+    DYNAMIC float MinFuelNominalPressure = 0.5f;
 };
 static_assert(sizeof(PressurizationParams) == 28);
 
