@@ -147,10 +147,16 @@ using FlightParamsCANChannel = CANConfigChannel<FlightParams>;
 
 #define app_printf(...) printf(__VA_ARGS__);
 
+#include <iostream>
 int main (void) {
     FlightParams params;
 
     PRINT_FLIGHT_PARAMS(params);
+
+    std::cerr << "Expected CRC : ";
+
+    FlightParamsManager man;
+    std::cerr << man.get_buffer_crc() << std::endl;
 }
 
 #endif
