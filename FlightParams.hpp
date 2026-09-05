@@ -85,8 +85,8 @@ struct DescentDepressurizeParams {
 };
 
 struct DescentParams {
-    FIXED DescentPassivationParams     Passivation  {};
-    FIXED DescentDPRDepressurizeParams Depressurize {};
+    FIXED DescentPassivationParams  Passivation  {};
+    FIXED DescentDepressurizeParams Depressurize {};
 
     FIXED uint32_t MaxDurationMs = 60 SECONDS;
 };
