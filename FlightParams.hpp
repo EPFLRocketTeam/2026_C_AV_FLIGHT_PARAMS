@@ -99,7 +99,7 @@ struct AbortParams {
 static_assert(sizeof(AbortParams) == 1);
 
 struct FlightParams {
-    DYNAMIC bool ColdflowMode = false;
+    DYNAMIC bool ColdflowMode = true;
 
     DYNAMIC PressurizationParams Pressurization;
     DYNAMIC IgnitionParams       Ignition;
