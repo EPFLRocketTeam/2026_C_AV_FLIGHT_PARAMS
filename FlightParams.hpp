@@ -99,6 +99,8 @@ struct AbortParams {
 static_assert(sizeof(AbortParams) == 1);
 
 struct FlightParams {
+    DYNAMIC bool ColdflowMode = false;
+
     DYNAMIC PressurizationParams Pressurization;
     DYNAMIC IgnitionParams       Ignition;
     DYNAMIC BurnParams           Burn;
@@ -107,7 +109,7 @@ struct FlightParams {
     FIXED DescentParams Descent {};
     FIXED AbortParams   AIF {};
 };
-static_assert(sizeof(FlightParams) == sizeof(PressurizationParams) + sizeof(IgnitionParams) + sizeof(BurnParams));
+static_assert(sizeof(FlightParams) == 4 + sizeof(PressurizationParams) + sizeof(IgnitionParams) + sizeof(BurnParams));
 
 enum BoardIds : uint8_t {
     FP_PRC_ETH = 0,
@@ -139,6 +141,7 @@ using FlightParamsCANChannel = CANConfigChannel<FlightParams>;
     printf("config burn impulse %f\n",                         params.Burn.Impulse); \
     printf("config burn max_duration fc %u\n",                 params.Burn.FcMaxDurationMs); \
     printf("config burn max_duration engine %u\n",             params.Burn.EngineMaxDurationMs); \
+    printf("config coldflow %s\n",                             params.ColdflowMode ? "on" : "off"); \
 }
 
 #ifdef COMMANDS_GENERATOR
