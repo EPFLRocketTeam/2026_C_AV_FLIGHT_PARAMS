@@ -15,28 +15,28 @@
 #define DYNAMIC
 
 struct PressurizationParams {
-    FIXED   uint32_t LaunchDelayMs = 12.f SECONDS;
-    DYNAMIC uint32_t HoldDelayMs   = 9.1f SECONDS;
+    FIXED   uint32_t LaunchDelayMs = 23.f SECONDS;
+    DYNAMIC uint32_t HoldDelayMs   = 20.f SECONDS;
 
-    DYNAMIC float TargetPressureLox  = 35.f;
-    DYNAMIC float TargetPressureFuel = 25.f;
+    DYNAMIC float TargetPressureLox  = 0.f;
+    DYNAMIC float TargetPressureFuel = 46.f;
 
     /* Ramp Rate (Bar per ms) */
     FIXED float RampRate = 50e-3;
     FIXED float RampExitThresholdRatio = 0.98;
     
     FIXED   float MaxCriticalPressure    = 70.f;
-    DYNAMIC float MaxLoxNominalPressure  = 37.f;
-    DYNAMIC float MinLoxNominalPressure  = 33.f;
-    DYNAMIC float MaxFuelNominalPressure = 27.f;
-    DYNAMIC float MinFuelNominalPressure = 23.f;
+    DYNAMIC float MaxLoxNominalPressure  = 1.f;
+    DYNAMIC float MinLoxNominalPressure  = -1.f;
+    DYNAMIC float MaxFuelNominalPressure = 48.f;
+    DYNAMIC float MinFuelNominalPressure = 44.f;
 };
 static_assert(sizeof(PressurizationParams) == 28);
 
 struct IgnitionParams {
-    DYNAMIC uint32_t PrechillDurationMs = 200;
-    DYNAMIC uint32_t IgniterDurationMs  = 2700;
-    DYNAMIC uint32_t DelayMs            = 130;
+    DYNAMIC uint32_t PrechillDurationMs = 1000;
+    DYNAMIC uint32_t IgniterDurationMs  = 2000;
+    DYNAMIC uint32_t DelayMs            = 500;
     DYNAMIC uint32_t RampUpMs           = 125;
 
     /* Threshold for liftoff (in m.s^-2) */
@@ -47,16 +47,16 @@ static_assert(sizeof(IgnitionParams) == 16);
 
 struct BurnParams {
     FIXED   float    PressureIntegralToImpulse = TBD;
-    DYNAMIC uint32_t MinDurationMs             = 2 SECONDS;
+    DYNAMIC uint32_t MinDurationMs             = 4 SECONDS;
     DYNAMIC float    Impulse                   = TBD;
     DYNAMIC uint32_t FcMaxDurationMs           = 7 SECONDS;
-    DYNAMIC uint32_t EngineMaxDurationMs       = 4 SECONDS;
-    DYNAMIC uint32_t CutoffDelayMs             = 40;
+    DYNAMIC uint32_t EngineMaxDurationMs       = 4.66 SECONDS;
+    DYNAMIC uint32_t CutoffDelayMs             = 500;
 };
 static_assert(sizeof(BurnParams) == 20);
 
 struct AscentParams {
-    FIXED uint32_t AscentMaxDurationMs    = 30 SECONDS;
+    FIXED uint32_t AscentMaxDurationMs    = INF_TIME;
     FIXED float    DescentSpeedThreshold  = - 3;
     FIXED uint32_t DescentSpeedDurationMs = 300;
 };
@@ -99,7 +99,7 @@ struct AbortParams {
 static_assert(sizeof(AbortParams) == 1);
 
 struct FlightParams {
-    DYNAMIC bool ColdflowMode = false;
+    DYNAMIC bool ColdflowMode = true;
 
     DYNAMIC PressurizationParams Pressurization;
     DYNAMIC IgnitionParams       Ignition;
