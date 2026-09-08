@@ -15,21 +15,31 @@
 #define DYNAMIC
 
 struct PressurizationParams {
-    FIXED   uint32_t LaunchDelayMs = 12.f SECONDS;
-    DYNAMIC uint32_t HoldDelayMs   = 9.1f SECONDS;
+    FIXED   uint32_t LaunchDelayMs = 23.f SECONDS;
+    DYNAMIC uint32_t HoldDelayMs   = 20.f SECONDS;
 
     DYNAMIC float TargetPressureLox  = 0.f;
     DYNAMIC float TargetPressureFuel = 1.f;
 
     /* Ramp Rate (Bar per ms) */
-    FIXED float RampRate = 50e-3;
     FIXED float RampExitThresholdRatio = 0.98;
+    FIXED float RampBVOpeningLox  = 28.8; // 26°
+    FIXED float RampBVOpeningFuel = 28.8; // 26°
     
     FIXED   float MaxCriticalPressure    = 70.f;
+
     DYNAMIC float MaxLoxNominalPressure  =  1.f;
     DYNAMIC float MinLoxNominalPressure  = -1.f;
     DYNAMIC float MaxFuelNominalPressure = 1.5f;
     DYNAMIC float MinFuelNominalPressure = 0.5f;
+
+    FIXED float SafetyBBDPRCloseThresholdRatio = 1.1f;
+    FIXED float SafetyBBDPROpenThresholdRatio  = 1.05f;
+
+    inline float SafetyLoxBBDPRCloseThreshold  () const { return SafetyBBDPRCloseThresholdRatio * MaxLoxNominalPressure; }
+    inline float SafetyLoxBBDPROpenThreshold   () const { return SafetyBBDPROpenThresholdRatio  * MaxLoxNominalPressure; }
+    inline float SafetyFuelBBDPRCloseThreshold () const { return SafetyBBDPRCloseThresholdRatio * MaxFuelNominalPressure; }
+    inline float SafetyFuelBBDPROpenThreshold  () const { return SafetyBBDPROpenThresholdRatio  * MaxFuelNominalPressure; }
 };
 static_assert(sizeof(PressurizationParams) == 28);
 
