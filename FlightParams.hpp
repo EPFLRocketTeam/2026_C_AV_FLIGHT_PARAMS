@@ -22,14 +22,23 @@ struct PressurizationParams {
     DYNAMIC float TargetPressureFuel = 46.f;
 
     /* Ramp Rate (Bar per ms) */
-    FIXED float RampRate = 50e-3;
     FIXED float RampExitThresholdRatio = 0.98;
+    FIXED float RampBVOpeningLox  = 28.8; // 26°
+    FIXED float RampBVOpeningFuel = 28.8; // 26°
     
     FIXED   float MaxCriticalPressure    = 70.f;
     DYNAMIC float MaxLoxNominalPressure  = 1.f;
     DYNAMIC float MinLoxNominalPressure  = -1.f;
     DYNAMIC float MaxFuelNominalPressure = 48.f;
     DYNAMIC float MinFuelNominalPressure = 44.f;
+
+    FIXED float SafetyBBDPRCloseThresholdRatio = 1.1f;
+    FIXED float SafetyBBDPROpenThresholdRatio  = 1.05f;
+
+    inline float SafetyLoxBBDPRCloseThreshold () { return SafetyBBDPRCloseThresholdRatio * MaxLoxNominalPressure; }
+    inline float SafetyLoxBBDPROpenThreshold  () { return SafetyBBDPROpenThresholdRatio  * MaxLoxNominalPressure; }
+    inline float SafetyFuelBBDPRCloseThreshold () { return SafetyBBDPRCloseThresholdRatio * MaxFuelNominalPressure; }
+    inline float SafetyFuelBBDPROpenThreshold  () { return SafetyBBDPROpenThresholdRatio  * MaxFuelNominalPressure; }
 };
 static_assert(sizeof(PressurizationParams) == 28);
 
