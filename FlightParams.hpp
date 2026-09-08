@@ -18,7 +18,7 @@ struct PressurizationParams {
     FIXED   uint32_t LaunchDelayMs = 23.f SECONDS;
     DYNAMIC uint32_t HoldDelayMs   = 20.f SECONDS;
 
-    DYNAMIC float TargetPressureLox  = 0.f;
+    DYNAMIC float TargetPressureLox  = -1.f;
     DYNAMIC float TargetPressureFuel = 1.f;
 
     /* Ramp Rate (Bar per ms) */
