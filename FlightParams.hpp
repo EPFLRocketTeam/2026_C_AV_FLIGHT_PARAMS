@@ -36,10 +36,10 @@ struct PressurizationParams {
     FIXED float SafetyBBDPRCloseThresholdRatio = 1.1f;
     FIXED float SafetyBBDPROpenThresholdRatio  = 1.05f;
 
-    inline float SafetyLoxBBDPRCloseThreshold  () const { return SafetyBBDPRCloseThresholdRatio * MaxLoxNominalPressure; }
-    inline float SafetyLoxBBDPROpenThreshold   () const { return SafetyBBDPROpenThresholdRatio  * MaxLoxNominalPressure; }
-    inline float SafetyFuelBBDPRCloseThreshold () const { return SafetyBBDPRCloseThresholdRatio * MaxFuelNominalPressure; }
-    inline float SafetyFuelBBDPROpenThreshold  () const { return SafetyBBDPROpenThresholdRatio  * MaxFuelNominalPressure; }
+    inline float SafetyLoxBBDPRCloseThreshold  () const { return SafetyBBDPRCloseThresholdRatio * TargetPressureLox; }
+    inline float SafetyLoxBBDPROpenThreshold   () const { return SafetyBBDPROpenThresholdRatio  * TargetPressureLox; }
+    inline float SafetyFuelBBDPRCloseThreshold () const { return SafetyBBDPRCloseThresholdRatio * TargetPressureFuel; }
+    inline float SafetyFuelBBDPROpenThreshold  () const { return SafetyBBDPROpenThresholdRatio  * TargetPressureFuel; }
 };
 static_assert(sizeof(PressurizationParams) == 28);
 
