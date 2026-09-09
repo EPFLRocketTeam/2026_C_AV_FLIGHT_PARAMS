@@ -19,7 +19,7 @@ struct PressurizationParams {
     DYNAMIC uint32_t HoldDelayMs   = 20.f SECONDS;
 
     DYNAMIC float TargetPressureLox  = -1.f;
-    DYNAMIC float TargetPressureFuel = 23.f;
+    DYNAMIC float TargetPressureFuel = 15.f;
 
     /* Ramp Rate (Bar per ms) */
     FIXED float RampExitThresholdRatio = 0.98;
@@ -29,8 +29,8 @@ struct PressurizationParams {
     FIXED   float MaxCriticalPressure    = 70.f;
     DYNAMIC float MaxLoxNominalPressure  = 1.f;
     DYNAMIC float MinLoxNominalPressure  = -1.f;
-    DYNAMIC float MaxFuelNominalPressure = 48.f;
-    DYNAMIC float MinFuelNominalPressure = 44.f;
+    DYNAMIC float MaxFuelNominalPressure = 16.f;
+    DYNAMIC float MinFuelNominalPressure = 14.f;
 
     FIXED float SafetyBBDPRCloseThresholdRatio = 1.1f;
     FIXED float SafetyBBDPROpenThresholdRatio  = 1.05f;
@@ -43,9 +43,9 @@ struct PressurizationParams {
 static_assert(sizeof(PressurizationParams) == 28);
 
 struct IgnitionParams {
-    DYNAMIC uint32_t PrechillDurationMs = 1000;
-    DYNAMIC uint32_t IgniterDurationMs  = 2000;
-    DYNAMIC uint32_t DelayMs            = 500;
+    DYNAMIC uint32_t PrechillDurationMs = 0;
+    DYNAMIC uint32_t IgniterDurationMs  = 0;
+    DYNAMIC uint32_t DelayMs            = 0;
     DYNAMIC uint32_t RampUpMs           = 125;
 
     /* Threshold for liftoff (in m.s^-2) */
@@ -56,11 +56,11 @@ static_assert(sizeof(IgnitionParams) == 16);
 
 struct BurnParams {
     FIXED   float    PressureIntegralToImpulse = TBD;
-    DYNAMIC uint32_t MinDurationMs             = 4 SECONDS;
+    DYNAMIC uint32_t MinDurationMs             = 2 SECONDS;
     DYNAMIC float    Impulse                   = TBD;
-    DYNAMIC uint32_t FcMaxDurationMs           = 7 SECONDS;
-    DYNAMIC uint32_t EngineMaxDurationMs       = 4.66 SECONDS;
-    DYNAMIC uint32_t CutoffDelayMs             = 500;
+    DYNAMIC uint32_t FcMaxDurationMs           = 4 SECONDS;
+    DYNAMIC uint32_t EngineMaxDurationMs       = 3 SECONDS;
+    DYNAMIC uint32_t CutoffDelayMs             = 0;
 };
 static_assert(sizeof(BurnParams) == 20);
 
