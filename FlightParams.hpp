@@ -63,7 +63,7 @@ struct BurnParams {
     DYNAMIC uint32_t MinDurationMs             = 4 SECONDS;
     DYNAMIC float    Impulse                   = TBD;
     DYNAMIC uint32_t FcMaxDurationMs           = 6 SECONDS;
-    DYNAMIC uint32_t EngineMaxDurationMs       = 4.66 SECONDS;
+    DYNAMIC uint32_t EngineMaxDurationMs       = 5.28 SECONDS;
     DYNAMIC uint32_t CutoffDelayMs             = 0;
 };
 static_assert(sizeof(BurnParams) == 20);
