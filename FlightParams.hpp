@@ -27,6 +27,8 @@ struct PressurizationParams {
 
     DYNAMIC float StableBVOpeningLox  = 40;
     DYNAMIC float StableBVOpeningFuel = 40;
+    DYNAMIC float PreburnDurationLoxMs  = 200;
+    DYNAMIC float PreburnDurationFuelMs = 200;
     
     FIXED   float MaxCriticalPressure    = 70.f;
     DYNAMIC float MaxLoxNominalPressure  = 1.f;
