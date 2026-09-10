@@ -22,9 +22,8 @@ struct PressurizationParams {
     DYNAMIC float TargetPressureFuel = 15.f;
 
     /* Ramp Rate (Bar per ms) */
-    FIXED float RampExitThresholdRatio = 0.98;
-    FIXED float RampBVOpeningLox  = 28.8; // 26°
-    FIXED float RampBVOpeningFuel = 28.8; // 26°
+    DYNAMIC float RampBVOpeningLox  = 31; // 26°
+    DYNAMIC float RampBVOpeningFuel = 31; // 26°
     
     FIXED   float MaxCriticalPressure    = 70.f;
     DYNAMIC float MaxLoxNominalPressure  = 1.f;
@@ -40,7 +39,7 @@ struct PressurizationParams {
     inline float SafetyFuelBBDPRCloseThreshold () const { return SafetyBBDPRCloseThresholdRatio * TargetPressureFuel; }
     inline float SafetyFuelBBDPROpenThreshold  () const { return SafetyBBDPROpenThresholdRatio  * TargetPressureFuel; }
 };
-static_assert(sizeof(PressurizationParams) == 28);
+static_assert(sizeof(PressurizationParams) == 36);
 
 struct IgnitionParams {
     DYNAMIC uint32_t PrechillDurationMs = 0;
@@ -135,6 +134,8 @@ using FlightParamsCANChannel = CANConfigChannel<FlightParams>;
 
 #define PRINT_FLIGHT_PARAMS(params) { \
     printf("config pressurize hold_delay %u\n",                params.Pressurization.HoldDelayMs); \
+    printf("config pressurize bv_opening_lox %f\n",            params.Pressurization.RampBVOpeningLox); \
+    printf("config pressurize bv_opening_fuel %f\n",           params.Pressurization.RampBVOpeningFuel); \
     printf("config pressurize target_pressure_lox %f\n",       params.Pressurization.TargetPressureLox); \
     printf("config pressurize target_pressure_fuel %f\n",      params.Pressurization.TargetPressureFuel); \
     printf("config pressurize max_lox_nominal_pressure %f\n",  params.Pressurization.MaxLoxNominalPressure); \
