@@ -15,11 +15,11 @@
 #define DYNAMIC
 
 struct PressurizationParams {
-    FIXED   uint32_t LaunchDelayMs = 11.2f SECONDS;
-    DYNAMIC uint32_t HoldDelayMs   = 10.f SECONDS;
+    FIXED   uint32_t LaunchDelayMs = 10.f SECONDS;
+    DYNAMIC uint32_t HoldDelayMs   = 7.1f SECONDS;
 
-    DYNAMIC float TargetPressureLox  = 48.f;
-    DYNAMIC float TargetPressureFuel = -1.f;
+    DYNAMIC float TargetPressureLox  = -1.f;
+    DYNAMIC float TargetPressureFuel = 46.f;
 
     /* Ramp Rate (Bar per ms) */
     DYNAMIC float RampBVOpeningLox  = 30; // 27°
@@ -31,10 +31,10 @@ struct PressurizationParams {
     DYNAMIC float PreburnDurationFuelMs = 200;
     
     FIXED   float MaxCriticalPressure    = 70.f;
-    DYNAMIC float MaxLoxNominalPressure  = 50.f;
-    DYNAMIC float MinLoxNominalPressure  = 47.9f;
-    DYNAMIC float MaxFuelNominalPressure = 1.f;
-    DYNAMIC float MinFuelNominalPressure = -1.9f;
+    DYNAMIC float MaxLoxNominalPressure  = 1.f;
+    DYNAMIC float MinLoxNominalPressure  = -1.f;
+    DYNAMIC float MaxFuelNominalPressure = 48.f;
+    DYNAMIC float MinFuelNominalPressure = 45.9f;
 
     FIXED float SafetyBBDPRCloseThresholdRatio = 1.1f;
     FIXED float SafetyBBDPROpenThresholdRatio  = 1.05f;
@@ -48,9 +48,9 @@ static_assert(sizeof(PressurizationParams) == 52);
 
 struct IgnitionParams {
     DYNAMIC uint32_t PrechillDurationMs = 200;
-    DYNAMIC uint32_t IgniterDurationMs  = 1000;
-    DYNAMIC uint32_t DelayMs            = 0;
-    DYNAMIC uint32_t RampUpMs           = 50;
+    DYNAMIC uint32_t IgniterDurationMs  = 2700;
+    DYNAMIC uint32_t DelayMs            = 140;
+    DYNAMIC uint32_t RampUpMs           = 125;
 
     /* Threshold for liftoff (in m.s^-2) */
     FIXED float    LiftoffAccelThreshold  = 2; // m/s2
@@ -60,11 +60,11 @@ static_assert(sizeof(IgnitionParams) == 16);
 
 struct BurnParams {
     FIXED   float    PressureIntegralToImpulse = TBD;
-    DYNAMIC uint32_t MinDurationMs             = 0.4 SECONDS;
+    DYNAMIC uint32_t MinDurationMs             = 4 SECONDS;
     DYNAMIC float    Impulse                   = TBD;
-    DYNAMIC uint32_t FcMaxDurationMs           = 0.5 SECONDS;
-    DYNAMIC uint32_t EngineMaxDurationMs       = 0.45 SECONDS;
-    DYNAMIC uint32_t CutoffDelayMs             = 0;
+    DYNAMIC uint32_t FcMaxDurationMs           = 5 SECONDS;
+    DYNAMIC uint32_t EngineMaxDurationMs       = 4.86 SECONDS;
+    DYNAMIC uint32_t CutoffDelayMs             = 40;
 };
 static_assert(sizeof(BurnParams) == 20);
 
