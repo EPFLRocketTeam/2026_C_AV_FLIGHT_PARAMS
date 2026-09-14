@@ -22,7 +22,7 @@ struct PressurizationParams {
     DYNAMIC float TargetPressureFuel = -1.f;
 
     /* Ramp Rate (Bar per ms) */
-    DYNAMIC float RampBVOpeningLox  = 30; // 27°
+    DYNAMIC float RampBVOpeningLox  = 33; // 27°
     DYNAMIC float RampBVOpeningFuel = 30; // 27°
 
     DYNAMIC float StableBVOpeningLox  = 40;
@@ -49,7 +49,7 @@ static_assert(sizeof(PressurizationParams) == 52);
 struct IgnitionParams {
     DYNAMIC uint32_t PrechillDurationMs = 200;
     DYNAMIC uint32_t IgniterDurationMs  = 1000;
-    DYNAMIC uint32_t DelayMs            = 140;
+    DYNAMIC uint32_t DelayMs            = 0;
     DYNAMIC uint32_t RampUpMs           = 50;
 
     /* Threshold for liftoff (in m.s^-2) */
