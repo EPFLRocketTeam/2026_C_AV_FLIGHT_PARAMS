@@ -22,7 +22,7 @@ struct PressurizationParams {
     DYNAMIC float TargetPressureFuel = -1.f;
 
     /* Ramp Rate (Bar per ms) */
-    DYNAMIC float RampBVOpeningLox  = 44; // 27°
+    DYNAMIC float RampBVOpeningLox  = 46; // 27°
     DYNAMIC float RampBVOpeningFuel = 30; // 27°
 
     DYNAMIC float StableBVOpeningLox  = 54;
