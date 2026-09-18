@@ -19,7 +19,7 @@ struct PressurizationParams {
     DYNAMIC uint32_t HoldDelayMs   = 7.1f SECONDS;
 
     DYNAMIC float TargetPressureLox  = -1.f;
-    DYNAMIC float TargetPressureFuel = 46.f;
+    DYNAMIC float TargetPressureFuel = -1.f;
 
     /* Ramp Rate (Bar per ms) */
     DYNAMIC float RampBVOpeningLox  = 30; // 27°
@@ -33,8 +33,8 @@ struct PressurizationParams {
     FIXED   float MaxCriticalPressure    = 70.f;
     DYNAMIC float MaxLoxNominalPressure  = 1.f;
     DYNAMIC float MinLoxNominalPressure  = -1.f;
-    DYNAMIC float MaxFuelNominalPressure = 48.f;
-    DYNAMIC float MinFuelNominalPressure = 45.9f;
+    DYNAMIC float MaxFuelNominalPressure = 1.f;
+    DYNAMIC float MinFuelNominalPressure = -1.f;
 
     FIXED float SafetyBBDPRCloseThresholdRatio = 1.1f;
     FIXED float SafetyBBDPROpenThresholdRatio  = 1.05f;
@@ -62,8 +62,8 @@ struct BurnParams {
     FIXED   float    PressureIntegralToImpulse = TBD;
     DYNAMIC uint32_t MinDurationMs             = 4 SECONDS;
     DYNAMIC float    Impulse                   = TBD;
-    DYNAMIC uint32_t FcMaxDurationMs           = 4.4 SECONDS;
-    DYNAMIC uint32_t EngineMaxDurationMs       = 5 SECONDS;
+    DYNAMIC uint32_t FcMaxDurationMs           = 5 SECONDS;
+    DYNAMIC uint32_t EngineMaxDurationMs       = 4.4 SECONDS;
     DYNAMIC uint32_t CutoffDelayMs             = 0;
 };
 static_assert(sizeof(BurnParams) == 20);
