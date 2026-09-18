@@ -32,7 +32,7 @@ struct PressurizationParams {
     
     FIXED   float MaxCriticalPressure    = 70.f;
     DYNAMIC float MaxLoxNominalPressure  = 1.f;
-    DYNAMIC float MinLoxNominalPressure  = -1.9f;
+    DYNAMIC float MinLoxNominalPressure  = -1.f;
     DYNAMIC float MaxFuelNominalPressure = 48.f;
     DYNAMIC float MinFuelNominalPressure = 45.9f;
 
