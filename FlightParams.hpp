@@ -15,7 +15,7 @@
 #define DYNAMIC
 
 struct PressurizationParams {
-    FIXED   uint32_t LaunchDelayMs = 10f SECONDS;
+    FIXED   uint32_t LaunchDelayMs = 10.f SECONDS;
     DYNAMIC uint32_t HoldDelayMs   = 7.1f SECONDS;
 
     DYNAMIC float TargetPressureLox  = -1.f;
