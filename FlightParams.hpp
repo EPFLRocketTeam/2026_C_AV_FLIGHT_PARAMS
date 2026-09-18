@@ -48,7 +48,7 @@ static_assert(sizeof(PressurizationParams) == 52);
 
 struct IgnitionParams {
     DYNAMIC uint32_t PrechillDurationMs = 200;
-    DYNAMIC uint32_t IgniterDurationMs  = 2700;
+    DYNAMIC uint32_t IgniterDurationMs  = 10000;
     DYNAMIC uint32_t DelayMs            = 140;
     DYNAMIC uint32_t RampUpMs           = 125;
 
