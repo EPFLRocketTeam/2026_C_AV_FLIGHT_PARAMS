@@ -32,7 +32,7 @@ struct PressurizationParams {
     
     FIXED   float MaxCriticalPressure    = 70.f;
     DYNAMIC float MaxLoxNominalPressure  = 50.f;
-    DYNAMIC float MinLoxNominalPressure  = 47.9.f;
+    DYNAMIC float MinLoxNominalPressure  = 47.9f;
     DYNAMIC float MaxFuelNominalPressure = 48.f;
     DYNAMIC float MinFuelNominalPressure = 45.9f;
 
@@ -64,7 +64,7 @@ struct BurnParams {
     DYNAMIC float    Impulse                   = TBD;
     DYNAMIC uint32_t FcMaxDurationMs           = 4 SECONDS;
     DYNAMIC uint32_t EngineMaxDurationMs       = 3.375 SECONDS;
-    DYNAMIC uint32_t CutoffDelayMs             = 0.038;
+    DYNAMIC uint32_t CutoffDelayMs             = 38;
 };
 static_assert(sizeof(BurnParams) == 20);
 
