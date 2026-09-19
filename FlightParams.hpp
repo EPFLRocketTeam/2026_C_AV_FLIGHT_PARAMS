@@ -15,14 +15,14 @@
 #define DYNAMIC
 
 struct PressurizationParams {
-    FIXED   uint32_t LaunchDelayMs = 30.f SECONDS;
-    DYNAMIC uint32_t HoldDelayMs   = 23.8f SECONDS;
+    FIXED   uint32_t LaunchDelayMs = 10.f SECONDS;
+    DYNAMIC uint32_t HoldDelayMs   = 3.8f SECONDS;
 
-    DYNAMIC float TargetPressureLox  = 48.f;
-    DYNAMIC float TargetPressureFuel = 46.f;
+    DYNAMIC float TargetPressureLox  = -1.f;
+    DYNAMIC float TargetPressureFuel = -1.f;
 
     /* Ramp Rate (Bar per ms) */
-    DYNAMIC float RampBVOpeningLox  = 30; // 27°
+    DYNAMIC float RampBVOpeningLox  = 40; // 36°
     DYNAMIC float RampBVOpeningFuel = 30; // 27°
 
     DYNAMIC float StableBVOpeningLox  = 45;
@@ -31,10 +31,10 @@ struct PressurizationParams {
     DYNAMIC float PreburnDurationFuelMs = 200;
     
     FIXED   float MaxCriticalPressure    = 70.f;
-    DYNAMIC float MaxLoxNominalPressure  = 50.f;
-    DYNAMIC float MinLoxNominalPressure  = 47.9f;
-    DYNAMIC float MaxFuelNominalPressure = 48.f;
-    DYNAMIC float MinFuelNominalPressure = 45.9f;
+    DYNAMIC float MaxLoxNominalPressure  = 1.f;
+    DYNAMIC float MinLoxNominalPressure  = -1.f;
+    DYNAMIC float MaxFuelNominalPressure = 1.f;
+    DYNAMIC float MinFuelNominalPressure = -1.f;
 
     FIXED float SafetyBBDPRCloseThresholdRatio = 1.1f;
     FIXED float SafetyBBDPROpenThresholdRatio  = 1.05f;
