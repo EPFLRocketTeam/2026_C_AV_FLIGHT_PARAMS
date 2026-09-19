@@ -15,10 +15,10 @@
 #define DYNAMIC
 
 struct PressurizationParams {
-    FIXED   uint32_t LaunchDelayMs = 10.f SECONDS;
-    DYNAMIC uint32_t HoldDelayMs   = 3.8f SECONDS;
+    FIXED   uint32_t LaunchDelayMs = 60.f SECONDS;
+    DYNAMIC uint32_t HoldDelayMs   = 53.8f SECONDS;
 
-    DYNAMIC float TargetPressureLox  = -1.f;
+    DYNAMIC float TargetPressureLox  = 23.f;
     DYNAMIC float TargetPressureFuel = -1.f;
 
     /* Ramp Rate (Bar per ms) */
@@ -31,8 +31,8 @@ struct PressurizationParams {
     DYNAMIC float PreburnDurationFuelMs = 200;
     
     FIXED   float MaxCriticalPressure    = 70.f;
-    DYNAMIC float MaxLoxNominalPressure  = 1.f;
-    DYNAMIC float MinLoxNominalPressure  = -1.f;
+    DYNAMIC float MaxLoxNominalPressure  = 25.f;
+    DYNAMIC float MinLoxNominalPressure  = 22.9f;
     DYNAMIC float MaxFuelNominalPressure = 1.f;
     DYNAMIC float MinFuelNominalPressure = -1.f;
 
@@ -60,10 +60,10 @@ static_assert(sizeof(IgnitionParams) == 16);
 
 struct BurnParams {
     FIXED   float    PressureIntegralToImpulse = TBD;
-    DYNAMIC uint32_t MinDurationMs             = 3 SECONDS;
+    DYNAMIC uint32_t MinDurationMs             = 1 SECONDS;
     DYNAMIC float    Impulse                   = TBD;
-    DYNAMIC uint32_t FcMaxDurationMs           = 4 SECONDS;
-    DYNAMIC uint32_t EngineMaxDurationMs       = 3.375 SECONDS;
+    DYNAMIC uint32_t FcMaxDurationMs           = 2 SECONDS;
+    DYNAMIC uint32_t EngineMaxDurationMs       = 1.375 SECONDS;
     DYNAMIC uint32_t CutoffDelayMs             = 38;
 };
 static_assert(sizeof(BurnParams) == 20);
