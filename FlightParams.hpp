@@ -15,11 +15,11 @@
 #define DYNAMIC
 
 struct PressurizationParams {
-    FIXED   uint32_t LaunchDelayMs = 60.f SECONDS;
-    DYNAMIC uint32_t HoldDelayMs   = 53.8f SECONDS;
+    FIXED   uint32_t LaunchDelayMs = 45.f SECONDS;
+    DYNAMIC uint32_t HoldDelayMs   = 40.3f SECONDS;
 
-    DYNAMIC float TargetPressureLox  = -1.f;
-    DYNAMIC float TargetPressureFuel = 21.f;
+    DYNAMIC float TargetPressureLox  = 48.f;
+    DYNAMIC float TargetPressureFuel = 46.f;
 
     /* Ramp Rate (Bar per ms) */
     DYNAMIC float RampBVOpeningLox  = 40; // 36°
@@ -31,10 +31,10 @@ struct PressurizationParams {
     DYNAMIC float PreburnDurationFuelMs = 200;
     
     FIXED   float MaxCriticalPressure    = 70.f;
-    DYNAMIC float MaxLoxNominalPressure  = 1.f;
-    DYNAMIC float MinLoxNominalPressure  = -1.f;
-    DYNAMIC float MaxFuelNominalPressure = 23.f;
-    DYNAMIC float MinFuelNominalPressure = 20.9f;
+    DYNAMIC float MaxLoxNominalPressure  = 50.f;
+    DYNAMIC float MinLoxNominalPressure  = 47.9f;
+    DYNAMIC float MaxFuelNominalPressure = 48.f;
+    DYNAMIC float MinFuelNominalPressure = 45.9f;
 
     FIXED float SafetyBBDPRCloseThresholdRatio = 1.1f;
     FIXED float SafetyBBDPROpenThresholdRatio  = 1.05f;
@@ -48,7 +48,7 @@ static_assert(sizeof(PressurizationParams) == 52);
 
 struct IgnitionParams {
     DYNAMIC uint32_t PrechillDurationMs = 200;
-    DYNAMIC uint32_t IgniterDurationMs  = 6000;
+    DYNAMIC uint32_t IgniterDurationMs  = 4500;
     DYNAMIC uint32_t DelayMs            = 108;
     DYNAMIC uint32_t RampUpMs           = 125;
 
