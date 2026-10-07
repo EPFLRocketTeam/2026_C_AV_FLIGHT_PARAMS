@@ -53,9 +53,9 @@ struct IgnitionParams {
     DYNAMIC uint32_t RampUpMs           = 125;
 
     /* Threshold for liftoff (in m.s^-2) */
-    FIXED float    LiftoffAccelThreshold  = 2; // m/s2
+    FIXED float    LiftoffAccelThreshold  = 15; // m/s2
     FIXED uint32_t LiftoffAccelDurationMs = 800;
-    FIXED uint32_t HoldDownDurationMs       = 200;
+    FIXED uint32_t HoldDownDurationMs     = 200;
 
     inline float TotalTimeUntilHoldDownMs () const {
         return PrechillDurationMs + IgniterDurationMs + DelayMs + RampUpMs + HoldDownDurationMs;
