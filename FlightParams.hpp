@@ -127,7 +127,7 @@ struct FlightParams {
     FIXED DescentParams Descent {};
     FIXED AbortParams   AIF {};
 
-    inline float MaxTimeFromIgnitionToDescentMs () {
+    inline float MaxTimeFromIgnitionToDescentMs () const {
         float IgnitionDurationMs = 
             Ignition.PrechillDurationMs
           + Ignition.IgniterDurationMs
