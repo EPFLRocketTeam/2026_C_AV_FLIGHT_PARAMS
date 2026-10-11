@@ -34,7 +34,7 @@ struct PressurizationParams {
     DYNAMIC float MaxLoxNominalPressure  = 50.064f;
     DYNAMIC float MinLoxNominalPressure  = 47.964f;
     DYNAMIC float MaxFuelNominalPressure = 51.796f;
-    DYNAMIC float MinFuelNominalPressure = 49.696.f;
+    DYNAMIC float MinFuelNominalPressure = 49.696f;
 
     FIXED float SafetyBBDPRCloseThresholdRatio = 1.1f;
     FIXED float SafetyBBDPROpenThresholdRatio  = 1.05f;
