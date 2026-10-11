@@ -1,4 +1,4 @@
-#pragma once
+w#pragma once
 #include <stdint.h>
 #include <stddef.h>
 
@@ -15,11 +15,11 @@
 #define DYNAMIC
 
 struct PressurizationParams {
-    FIXED   uint32_t LaunchDelayMs = 15.f SECONDS;
-    DYNAMIC uint32_t HoldDelayMs   = 10.3f SECONDS;
+    FIXED   uint32_t LaunchDelayMs = 30.f SECONDS;
+    DYNAMIC uint32_t HoldDelayMs   = 25.3f SECONDS;
 
-    DYNAMIC float TargetPressureLox  = -1.f;
-    DYNAMIC float TargetPressureFuel = -1.f;
+    DYNAMIC float TargetPressureLox  = 48.064f;
+    DYNAMIC float TargetPressureFuel = 49.796f;
 
     /* Ramp Rate (Bar per ms) */
     DYNAMIC float RampBVOpeningLox  = 40; // 36°
@@ -31,10 +31,10 @@ struct PressurizationParams {
     DYNAMIC float PreburnDurationFuelMs = 200;
     
     FIXED   float MaxCriticalPressure    = 70.f;
-    DYNAMIC float MaxLoxNominalPressure  = 1.f;
-    DYNAMIC float MinLoxNominalPressure  = -1.f;
-    DYNAMIC float MaxFuelNominalPressure = 1.f;
-    DYNAMIC float MinFuelNominalPressure = -1.f;
+    DYNAMIC float MaxLoxNominalPressure  = 50.064f;
+    DYNAMIC float MinLoxNominalPressure  = 47.964f;
+    DYNAMIC float MaxFuelNominalPressure = 51.796f;
+    DYNAMIC float MinFuelNominalPressure = 49.696.f;
 
     FIXED float SafetyBBDPRCloseThresholdRatio = 1.1f;
     FIXED float SafetyBBDPROpenThresholdRatio  = 1.05f;
@@ -65,10 +65,10 @@ static_assert(sizeof(IgnitionParams) == 16);
 
 struct BurnParams {
     FIXED   float    PressureIntegralToImpulse = 251.4274991;
-    DYNAMIC uint32_t MinDurationMs             = 3 SECONDS;
-    DYNAMIC float    Impulse                   = 1257;
-    DYNAMIC uint32_t FcMaxDurationMs           = 4 SECONDS;
-    DYNAMIC uint32_t EngineMaxDurationMs       = 3.5 SECONDS;
+    DYNAMIC uint32_t MinDurationMs             = 0.5 SECONDS;
+    DYNAMIC float    Impulse                   = 1200;
+    DYNAMIC uint32_t FcMaxDurationMs           = 5 SECONDS;
+    DYNAMIC uint32_t EngineMaxDurationMs       = 3 SECONDS;
     DYNAMIC uint32_t CutoffDelayMs             = 9;
 };
 static_assert(sizeof(BurnParams) == 20);
