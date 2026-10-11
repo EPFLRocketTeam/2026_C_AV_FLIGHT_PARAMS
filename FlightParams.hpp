@@ -64,7 +64,7 @@ struct IgnitionParams {
 static_assert(sizeof(IgnitionParams) == 16);
 
 struct BurnParams {
-    FIXED   float    PressureIntegralToImpulse = 0.2514274991;
+    FIXED   float    PressureIntegralToImpulse = 251.4274991;
     DYNAMIC uint32_t MinDurationMs             = 1 SECONDS;
     DYNAMIC float    Impulse                   = 10'000;
     DYNAMIC uint32_t FcMaxDurationMs           = 2 SECONDS;
