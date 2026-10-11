@@ -64,9 +64,9 @@ struct IgnitionParams {
 static_assert(sizeof(IgnitionParams) == 16);
 
 struct BurnParams {
-    FIXED   float    PressureIntegralToImpulse = TBD;
+    FIXED   float    PressureIntegralToImpulse = 0.2514274991;
     DYNAMIC uint32_t MinDurationMs             = 1 SECONDS;
-    DYNAMIC float    Impulse                   = TBD;
+    DYNAMIC float    Impulse                   = 10'000;
     DYNAMIC uint32_t FcMaxDurationMs           = 2 SECONDS;
     DYNAMIC uint32_t EngineMaxDurationMs       = 1.375 SECONDS;
     DYNAMIC uint32_t CutoffDelayMs             = 38;
@@ -74,15 +74,15 @@ struct BurnParams {
 static_assert(sizeof(BurnParams) == 20);
 
 struct AscentParams {
-    FIXED uint32_t AscentMaxDurationMs    = INF_TIME;
+    FIXED uint32_t AscentMaxDurationMs    = 32 SECONDS;
     FIXED float    DescentSpeedThreshold  = - 3;
     FIXED uint32_t DescentSpeedDurationMs = 300;
 };
 static_assert(sizeof(AscentParams) == 1);
 
 struct DescentPassivationParams {
-    FIXED uint32_t DelayMs      = 5 SECONDS;
-    FIXED uint32_t DelayNoComMs = 120 SECONDS;
+    FIXED uint32_t DelayMs      = 10 SECONDS;
+    FIXED uint32_t DelayNoComMs = 150 SECONDS;
     
     FIXED uint32_t DurationMs          = 10 SECONDS;
     FIXED uint32_t InterludeDurationMs = 10 SECONDS;
@@ -92,10 +92,10 @@ struct DescentEngineDepressurizeParams {
     FIXED uint32_t DurationMs = 20 SECONDS;
 };
 struct DescentDPRDepressurizeParams {
-    FIXED uint32_t DelayMs          = 45 SECONDS;
-    FIXED float    BallValveOpening = 50.f;
-    FIXED uint32_t DurationMs       = 20 SECONDS;
-    FIXED uint32_t DelayNoComMs     = 120 SECONDS;
+    FIXED uint32_t DelayMs          = 51 SECONDS;
+    FIXED float    BallValveOpening = 40.f;
+    FIXED uint32_t DurationMs       = 18 SECONDS;
+    FIXED uint32_t DelayNoComMs     = 150 SECONDS;
 };
 struct DescentDepressurizeParams {
     FIXED DescentEngineDepressurizeParams Engine {};
@@ -106,7 +106,7 @@ struct DescentParams {
     FIXED DescentPassivationParams  Passivation  {};
     FIXED DescentDepressurizeParams Depressurize {};
 
-    FIXED uint32_t MaxDurationMs = 60 SECONDS;
+    FIXED uint32_t MaxDurationMs = 140 SECONDS;
 };
 static_assert(sizeof(DescentParams) == 1);
 
@@ -117,7 +117,7 @@ struct AbortParams {
 static_assert(sizeof(AbortParams) == 1);
 
 struct FlightParams {
-    DYNAMIC bool ColdflowMode = true;
+    DYNAMIC bool ColdflowMode = false;
 
     DYNAMIC PressurizationParams Pressurization;
     DYNAMIC IgnitionParams       Ignition;
