@@ -128,13 +128,7 @@ struct FlightParams {
     FIXED AbortParams   AIF {};
 
     inline float MaxTimeFromIgnitionToDescentMs () const {
-        float IgnitionDurationMs = 
-            Ignition.PrechillDurationMs
-          + Ignition.IgniterDurationMs
-          + Ignition.DelayMs
-          + Ignition.RampUpMs;
-        
-        return IgnitionDurationMs + Burn.FcMaxDurationMs + Ascent.AscentMaxDurationMs;
+        return Burn.FcMaxDurationMs + Ascent.AscentMaxDurationMs;
     }
 };
 static_assert(sizeof(FlightParams) == 4 + sizeof(PressurizationParams) + sizeof(IgnitionParams) + sizeof(BurnParams));
