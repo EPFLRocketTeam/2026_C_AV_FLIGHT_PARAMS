@@ -74,7 +74,7 @@ struct BurnParams {
 static_assert(sizeof(BurnParams) == 20);
 
 struct AscentParams {
-    FIXED uint32_t AscentMaxDurationMs    = 32 SECONDS;
+    FIXED uint32_t AscentMaxDurationMs    = 23.36 SECONDS;
     FIXED float    DescentSpeedThreshold  = - 3;
     FIXED uint32_t DescentSpeedDurationMs = 300;
 };
